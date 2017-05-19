@@ -8,8 +8,27 @@
 
 import UIKit
 
-class ViewController: UIViewController {
 
+
+    var switchy: Bool = false
+    
+    class ViewController: UIViewController {
+
+        
+        @IBOutlet weak var theLightBulbImage: UIImageView!
+        
+        @IBAction func button(_ sender: Any) {
+            if switchy == false {
+                theLightBulbImage.image = #imageLiteral(resourceName: "lightonblack")
+                switchy = true
+            } else {
+                theLightBulbImage.image = #imageLiteral(resourceName: "LightBulbOff")
+                switchy = false
+                
+            }
+        }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("WWWAAAAAAAAAAAAAAAA")
