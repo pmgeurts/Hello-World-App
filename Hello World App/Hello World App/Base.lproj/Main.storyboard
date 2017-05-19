@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,37 +21,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FN4-2f-uQj">
-                                <rect key="frame" x="67" y="83" width="240" height="473"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qBt-nR-CbF">
+                                <rect key="frame" x="102" y="120" width="170" height="427"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LightBulbOff" translatesAutoresizingMaskIntoConstraints="NO" id="phe-Cs-9BX">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="395"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="395" id="7mb-2j-4y6"/>
-                                            <constraint firstAttribute="width" constant="240" id="Cdz-Um-XP4"/>
-                                        </constraints>
+                                        <rect key="frame" x="0.0" y="0.0" width="170" height="282"/>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Some Text" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sWB-9X-RH1">
-                                        <rect key="frame" x="32.5" y="395" width="175" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="33"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iPT-xg-K2q">
-                                        <rect key="frame" x="64.5" y="425" width="111" height="48"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                        <rect key="frame" x="38.5" y="290" width="93" height="42"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                         <state key="normal" title="On / Off"/>
                                         <connections>
                                             <action selector="button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SGP-wO-oVq"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3aq-Ny-GWs">
+                                        <rect key="frame" x="40" y="340" width="90" height="40"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                        <state key="normal" title="FLASHY">
+                                            <color key="titleColor" red="0.93466740846633911" green="0.02948482520878315" blue="0.94903343915939331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="flashy:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Mr-XJ-WS7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oDN-uT-xqI">
+                                        <rect key="frame" x="18" y="388" width="134" height="39"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                        <state key="normal" title="STOP FLASH">
+                                            <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="stopTimer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qsu-Fe-xoe"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="3aq-Ny-GWs" firstAttribute="centerX" secondItem="phe-Cs-9BX" secondAttribute="centerX" id="s9C-lj-i2W"/>
+                                    <constraint firstItem="iPT-xg-K2q" firstAttribute="centerX" secondItem="phe-Cs-9BX" secondAttribute="centerX" id="twK-Hw-OQ5"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="FN4-2f-uQj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="51" id="CG4-jY-sv2"/>
-                            <constraint firstItem="FN4-2f-uQj" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="63" id="CHJ-es-F2h"/>
+                            <constraint firstItem="qBt-nR-CbF" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="lG1-vf-CqG"/>
+                            <constraint firstItem="qBt-nR-CbF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="se1-kr-bvh"/>
                         </constraints>
                     </view>
                     <connections>

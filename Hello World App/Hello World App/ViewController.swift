@@ -7,34 +7,104 @@
 //
 
 import UIKit
+import AVFoundation
 
 
 
-    var switchy: Bool = false
+enum lightBulb {
+    case on
+    case off
     
-    class ViewController: UIViewController {
-
+    mutating func toggle() -> UIImage {
         
-        @IBOutlet weak var theLightBulbImage: UIImageView!
+        switch self {
+        case .on:
+            self = .off
+            switchCameraTorch()
+            return #imageLiteral(resourceName: "LightBulbOff")
+        case .off:
+            self = .on
+            switchCameraTorch()
+            return #imageLiteral(resourceName: "lightonblack")
+        }
+    }
+    
+    func switchCameraTorch() {
+        guard let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) else {return}
         
-        @IBAction func button(_ sender: Any) {
-            if switchy == false {
-                theLightBulbImage.image = #imageLiteral(resourceName: "lightonblack")
-                switchy = true
-            } else {
-                theLightBulbImage.image = #imageLiteral(resourceName: "LightBulbOff")
-                switchy = false
-                
+        // check if the device has torch
+        if (device.hasTorch) {
+            do {
+                // lock your device for configuration
+                try device.lockForConfiguration()
+                // check if your torchMode is on or off. If on turns it off otherwise turns it on
+                if (device.torchMode == AVCaptureTorchMode.on) {
+                    device.torchMode = AVCaptureTorchMode.off
+                } else {
+                    do {
+                        // sets the torch intensity to 100%
+                        try device.setTorchModeOnWithLevel(1.0)
+                    } catch {
+                        print(error)
+                    }
+                }
+                // unlock your device
+                device.unlockForConfiguration()
+            } catch {
+                print(error)
             }
         }
+    }
+    
+    
+}
 
+
+
+class ViewController: UIViewController {
+    
+    
+    var light: lightBulb = lightBulb.off
+    var timer = Timer()
+    
+    //guard let avDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo) else {return}
+    
+    
+    
+    @IBOutlet weak var theLightBulbImage: UIImageView!
+    
+    @IBAction func button(_ sender: Any) {
+        toggleLight()
+        
+        
+        
+        
+        
+        
+    }
+    
+    @IBAction func flashy(_ sender: Any) {
+        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(toggleLight), userInfo: nil, repeats: true)
+    }
+    
+    func toggleLight() {
+        theLightBulbImage.image = light.toggle()
+        
+    }
+    
+    @IBAction func stopTimer(_ sender: Any) {
+        timer.invalidate()
+    }
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("WWWAAAAAAAAAAAAAAAA")
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
     override func loadView() {
         super.loadView()
         print("LoadView")
@@ -68,7 +138,7 @@ import UIKit
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
 }
 
